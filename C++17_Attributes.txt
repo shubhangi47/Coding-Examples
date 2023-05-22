@@ -1,0 +1,32 @@
+C++17 Attributes. 
+
+1. [[fallthrough]] -  In C++17 and on, a standard attribute was introduced to indicate that the warning is not needed when the code is meant to fall through.
+With this attribute, you can now merge the bodies of two adjacent case branches in a switch without getting any warnings from the compiler. 
+By using it, you tell the compiler that the prior case body is non-terminated intentionally. 
+[[fallthrough]] silences an implicit fallthrough warning in a switch
+
+Example -  switch(input) {
+    case 1:
+    case 2:
+         std::cout << "Hello" << std::endl // // WARNING: implicit fallthrough
+    case 2:
+        std::cout << " C++" << std::endl;
+        [[fallthrough]]; // > No warning
+    case 3:
+    
+}
+
+2. [[nodiscard]] -   forgot to check the return value of your functions ? with this attribute, discarding the return values will become a reason for compiler warnings.
+It creates a warning if the return value of a function call is discarded.It's used to indicate that the return value of a function shouldn't be ignored.
+
+Example - [[nodiscard]] int fun();
+void callingfun() {
+f(); // WARNING: return value of nodiscard function discarded.
+}
+
+3.[[unused]]  - This attribute silences an unused entity warning. An entity marked [[unused]] means that the entity may appear to be unused for some reason. If an
+implementation would have otherwise warned that the entity isn’t used, the [[unused]] attribute suppresses the warning:
+
+Example - int x; // WARNING: x is unused
+[[unused]] int x; // OK
+
