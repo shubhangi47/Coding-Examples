@@ -1,1 +1,13 @@
 Static Linking example
+
+Steps to create static library of two files add.cpp and sub.cpp, Follow below steps in ubuntu.
+
+gcc -c add.cpp -o add.o   -- create object file add.o for add.cpp
+gcc -c sub.cpp -o sub.o   -- create object file sub.o for sub.cpp
+ar rcs lib_cal.a add.o sub.o  -- create static library lib_cal.a of above object files
+gcc -o main main.o -L. lib_cal.a  -lstdc++  -- To run the main application based on static library.
+
+./main 
+output = add :30
+         sub :10
+
